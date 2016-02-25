@@ -1,8 +1,23 @@
 package rover
 
+const (
+    NH int8 = 0
+    ET int8 = 1
+    SH int8 = 2
+    WT int8 = 3
+)
 type Rover struct {
     PostionX int64
     PostionY int64
+    Direction int8
+}
+
+func (this *Rover) Init(x,y int64, d int8) error {
+    this.PostionX = x
+    this.PostionY = y
+    this.Direction = d   
+    
+    return nil 
 }
 
 func (this *Rover) Order(cmd string) error {
