@@ -21,7 +21,7 @@ func TestRoverMoveNorth(t *testing.T) {
         t.Errorf("order rover fail: %v", err)        
     }
     
-    if rover.PostionX != 0 && rover.PostionY != 1 {
+    if rover.CurrPosition != NewPosition(0, 1) {
         t.Error("rover's postion is not expect(0,1)")        
     }
 }
@@ -41,7 +41,7 @@ func TestRoverMoveEAST(t *testing.T) {
         t.Errorf("order rover fail: %v", err)        
     }
     
-    if rover.PostionX != 1 && rover.PostionY != 0 {
+    if rover.CurrPosition != NewPosition(1, 0) {
         t.Error("rover's postion is not expect(1,0)")        
     }
 }
@@ -61,7 +61,7 @@ func TestRoverMoveSouth(t *testing.T) {
         t.Errorf("order rover fail: %v", err)        
     }
     
-    if rover.PostionX != 0 && rover.PostionY != -1 {
+    if rover.CurrPosition != NewPosition(0,-1) {
         t.Error("rover's postion is not expect(0,-1)")        
     }
 }
@@ -81,7 +81,7 @@ func TestRoverMoveWest(t *testing.T) {
         t.Errorf("order rover fail: %v", err)        
     }
     
-    if rover.PostionX != -1 && rover.PostionY != 0 {
+    if rover.CurrPosition != NewPosition(-1,0) {
         t.Error("rover's postion is not expect(-1,0)")        
     }
 }
@@ -160,7 +160,7 @@ func TestRoverOrder(t *testing.T) {
         t.Errorf("order rover fail: %v", err)
     }
     
-    if rover.PostionX != 2 && rover.PostionY !=2 {
+    if rover.CurrPosition != NewPosition(2,2) {
         t.Error("rover's postion is not expect(2,2)")
     }
 }

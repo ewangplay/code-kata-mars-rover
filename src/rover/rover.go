@@ -10,15 +10,26 @@ const (
     SH int8 = 2
     WT int8 = 3
 )
+
+type Position struct {
+    X int64
+    Y int64
+}
+
+func NewPosition(x,y int64) Position {
+    return Position{
+        X: x,
+        Y: y,
+    }
+}
+
 type Rover struct {
-    PostionX int64
-    PostionY int64
+    CurrPosition Position
     Direction int8
 }
 
 func (this *Rover) Init(x,y int64, d int8) error {
-    this.PostionX = x
-    this.PostionY = y
+    this.CurrPosition = NewPosition(x,y)
     this.Direction = d   
     
     return nil 
@@ -27,13 +38,13 @@ func (this *Rover) Init(x,y int64, d int8) error {
 func (this *Rover) Move() error {
     switch this.Direction {
         case NH:
-            this.PostionY += 1
+            this.CurrPosition.Y += 1
         case ET:
-            this.PostionX += 1
+            this.CurrPosition.X += 1
         case SH:
-            this.PostionY -= 1
+            this.CurrPosition.Y -= 1
         case WT:
-            this.PostionX -= 1
+            this.CurrPosition.X -= 1
         default:
             return fmt.Errorf("not setting direction")
     }
@@ -76,8 +87,8 @@ func (this *Rover) TurnRight() error {
 }
 
 func (this *Rover) Order(cmd string) error {
-    this.PostionX = 2
-    this.PostionY = 2
+    this.CurrPosition.X = 2
+    this.CurrPosition.Y = 2
     
     return nil
 }
