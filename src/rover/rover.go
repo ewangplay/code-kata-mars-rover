@@ -42,7 +42,19 @@ func (this *Rover) Move() error {
 }
 
 func (this *Rover) TurnLeft() error {
-    this.Direction = WT
+    switch this.Direction {
+        case NH:
+            this.Direction = WT
+        case ET:
+            this.Direction = NH
+        case SH:
+            this.Direction = ET
+        case WT:
+            this.Direction = SH
+        default:
+            return fmt.Errorf("not setting direction")
+    }
+
     return nil
 }
 
