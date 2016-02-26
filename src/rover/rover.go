@@ -52,6 +52,23 @@ func (this *Rover) MoveForward() error {
     return nil
 }
 
+func (this *Rover) MoveBackward() error {
+    switch this.Direction {
+        case NH:
+            this.CurrPosition.Y -= 1
+        case ET:
+            this.CurrPosition.X -= 1
+        case SH:
+            this.CurrPosition.Y += 1
+        case WT:
+            this.CurrPosition.X += 1
+        default:
+            return fmt.Errorf("not setting direction")
+    }
+    
+    return nil
+}
+
 func (this *Rover) TurnLeft() error {
     switch this.Direction {
         case NH:

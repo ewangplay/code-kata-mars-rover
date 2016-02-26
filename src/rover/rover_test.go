@@ -11,6 +11,12 @@ var move_forward_positions = map[int8]Position {
     WT: NewPosition(-1, 0),
     NH: NewPosition(0, 1),
 }
+var move_backward_positions = map[int8]Position {
+    ET: NewPosition(-1, 0),
+    SH: NewPosition(0, 1),
+    WT: NewPosition(1, 0),
+    NH: NewPosition(0, -1),
+}
 
 func TestRoverMoveForward(t *testing.T) {
     var err error
@@ -30,7 +36,31 @@ func TestRoverMoveForward(t *testing.T) {
         }
         
         if rover.CurrPosition != p {
-            t.Error("rover's postion is not expect(-1,0)")        
+            t.Errorf("rover's postion should be %v", p)        
+        }    
+    }
+    
+}
+
+func TestRoverMoveBackward(t *testing.T) {
+    var err error
+    
+    rover := &Rover{}
+    
+    for d, p := range move_backward_positions {
+        
+        err = rover.Init(0,0,d)
+        if err != nil {
+            t.Errorf("init rover fail: %v", err)        
+        }
+
+        err = rover.MoveBackward()
+        if err != nil {
+            t.Errorf("order rover fail: %v", err)        
+        }
+        
+        if rover.CurrPosition != p {
+            t.Error("rover's postion should be %v", p)        
         }    
     }
     
