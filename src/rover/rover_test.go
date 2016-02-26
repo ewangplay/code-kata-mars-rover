@@ -4,8 +4,8 @@ import (
     "testing"
 )
 
-var directions = []int8{ET,SH,WT,NH}
-var positions = map[int8]Position {
+var turn_directions = []int8{ET,SH,WT,NH}
+var move_forward_positions = map[int8]Position {
     ET: NewPosition(1, 0),
     SH: NewPosition(0, -1),
     WT: NewPosition(-1, 0),
@@ -17,7 +17,7 @@ func TestRoverMoveForward(t *testing.T) {
     
     rover := &Rover{}
     
-    for d, p := range positions {
+    for d, p := range move_forward_positions {
         
         err = rover.Init(0,0,d)
         if err != nil {
@@ -56,7 +56,7 @@ func TestRoverTurnLeft(t *testing.T) {
     
     rover := &Rover{}
         
-    for i, d := range directions {
+    for i, d := range turn_directions {
         err = rover.Init(0,0,d)
         if err != nil {
             t.Errorf("init rover fail: %v", err)        
@@ -67,8 +67,8 @@ func TestRoverTurnLeft(t *testing.T) {
             t.Errorf("rover turn left fail: %v", err)        
         }
         
-        if rover.Direction != directions[GetLeftPosition(i)] {
-            t.Errorf("rover facing to %v turn left will face to %v.", d, directions[GetLeftPosition(i)])
+        if rover.Direction != turn_directions[GetLeftPosition(i)] {
+            t.Errorf("rover facing to %v turn left will face to %v.", d, turn_directions[GetLeftPosition(i)])
         }
     }
 }
@@ -78,7 +78,7 @@ func TestRoverTurnRight(t *testing.T) {
     
     rover := &Rover{}
     
-    for i, d := range directions {
+    for i, d := range turn_directions {
         err = rover.Init(0,0,d)
         if err != nil {
             t.Errorf("init rover fail: %v", err)        
@@ -89,8 +89,8 @@ func TestRoverTurnRight(t *testing.T) {
             t.Errorf("rover turn right fail: %v", err)        
         }
         
-        if rover.Direction != directions[GetRightPosition(i)] {
-            t.Errorf("rover facing to %v turn right will face to %v.", d, directions[GetRightPosition(i)])
+        if rover.Direction != turn_directions[GetRightPosition(i)] {
+            t.Errorf("rover facing to %v turn right will face to %v.", d, turn_directions[GetRightPosition(i)])
         }
     }
 }
