@@ -104,8 +104,27 @@ func (this *Rover) TurnRight() error {
 }
 
 func (this *Rover) Order(cmd string) error {
-    this.CurrPosition.X = 2
-    this.CurrPosition.Y = 2
+    var err error
+    
+    for i := 0; i < len(cmd); i++ {
+        switch cmd[i] {
+            case 'f':
+                err = this.MoveForward()
+            case 'b':
+                err = this.MoveBackward()
+            case 'r':
+                err = this.TurnRight()
+            case 'l':
+                err = this.TurnLeft()
+            default:
+                err = fmt.Errorf("incorrect order")
+            
+        }
+        
+        if err != nil {
+            return err
+        }
+    }
     
     return nil
 }
