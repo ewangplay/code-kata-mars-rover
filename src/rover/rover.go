@@ -35,7 +35,7 @@ func (this *Rover) Init(x,y int64, d int8) error {
     return nil 
 }
 
-func (this *Rover) Move() error {
+func (this *Rover) MoveForward() error {
     switch this.Direction {
         case NH:
             this.CurrPosition.Y += 1

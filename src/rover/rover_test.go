@@ -12,7 +12,7 @@ var positions = map[int8]Position {
     NH: NewPosition(0, 1),
 }
 
-func TestRoverMove(t *testing.T) {
+func TestRoverMoveForward(t *testing.T) {
     var err error
     
     rover := &Rover{}
@@ -24,7 +24,7 @@ func TestRoverMove(t *testing.T) {
             t.Errorf("init rover fail: %v", err)        
         }
 
-        err = rover.Move()
+        err = rover.MoveForward()
         if err != nil {
             t.Errorf("order rover fail: %v", err)        
         }
