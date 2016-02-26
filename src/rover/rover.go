@@ -58,6 +58,11 @@ func (this *Rover) TurnLeft() error {
     return nil
 }
 
+func (this *Rover) TurnRight() error {
+    this.Direction = ET
+    return nil
+}
+
 func (this *Rover) Order(cmd string) error {
     this.PostionX = 2
     this.PostionY = 2
