@@ -84,6 +84,26 @@ func TestRoverMoveWest(t *testing.T) {
     }
 }
 
+func TestRoverTurnLeft(t *testing.T) {
+    var err error
+    
+    rover := &Rover{}
+    
+    err = rover.Init(0,0,NH)
+    if err != nil {
+        t.Errorf("init rover fail: %v", err)        
+    }
+    
+    err = rover.TurnLeft()
+    if err != nil {
+        t.Errorf("rover turn left fail: %v", err)        
+    }
+    
+    if rover.Direction != WT {
+        t.Error("rover facing to North turn left will face to West.")
+    }
+}
+
 func TestRoverOrder(t *testing.T) {
     var err error
     

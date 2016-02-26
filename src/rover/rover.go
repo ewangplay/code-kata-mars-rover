@@ -40,6 +40,12 @@ func (this *Rover) Move() error {
     
     return nil
 }
+
+func (this *Rover) TurnLeft() error {
+    this.Direction = WT
+    return nil
+}
+
 func (this *Rover) Order(cmd string) error {
     this.PostionX = 2
     this.PostionY = 2
