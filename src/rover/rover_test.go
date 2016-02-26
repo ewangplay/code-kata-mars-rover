@@ -84,23 +84,33 @@ func TestRoverMoveWest(t *testing.T) {
     }
 }
 
+func GetLeftPostion(pos int) int {
+    if pos == 0 {
+        return 3
+    }
+    return pos-1
+}
+
 func TestRoverTurnLeft(t *testing.T) {
     var err error
+    var directions = []int8{ET,SH,WT,NH}
     
     rover := &Rover{}
-    
-    err = rover.Init(0,0,NH)
-    if err != nil {
-        t.Errorf("init rover fail: %v", err)        
-    }
-    
-    err = rover.TurnLeft()
-    if err != nil {
-        t.Errorf("rover turn left fail: %v", err)        
-    }
-    
-    if rover.Direction != WT {
-        t.Error("rover facing to North turn left will face to West.")
+        
+    for i, d := range directions {
+        err = rover.Init(0,0,d)
+        if err != nil {
+            t.Errorf("init rover fail: %v", err)        
+        }
+        
+        err = rover.TurnLeft()
+        if err != nil {
+            t.Errorf("rover turn left fail: %v", err)        
+        }
+        
+        if rover.Direction != directions[GetLeftPostion(i)] {
+            t.Errorf("rover facing to %v turn left will face to %v.", d, directions[GetLeftPostion(i)])
+        }
     }
 }
 
