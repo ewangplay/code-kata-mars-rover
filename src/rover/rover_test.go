@@ -5,85 +5,35 @@ import (
 )
 
 var directions = []int8{ET,SH,WT,NH}
-
-func TestRoverMoveNorth(t *testing.T) {
-    var err error
-    
-    rover := &Rover{}
-            
-    err = rover.Init(0,0,NH)
-    if err != nil {
-        t.Errorf("init rover fail: %v", err)        
-    }
-
-    err = rover.Move()
-    if err != nil {
-        t.Errorf("order rover fail: %v", err)        
-    }
-    
-    if rover.CurrPosition != NewPosition(0, 1) {
-        t.Error("rover's postion is not expect(0,1)")        
-    }
+var positions = map[int8]Position {
+    ET: NewPosition(1, 0),
+    SH: NewPosition(0, -1),
+    WT: NewPosition(-1, 0),
+    NH: NewPosition(0, 1),
 }
 
-func TestRoverMoveEAST(t *testing.T) {
+func TestRoverMove(t *testing.T) {
     var err error
     
     rover := &Rover{}
     
-    err = rover.Init(0,0,ET)
-    if err != nil {
-        t.Errorf("init rover fail: %v", err)        
-    }
+    for d, p := range positions {
+        
+        err = rover.Init(0,0,d)
+        if err != nil {
+            t.Errorf("init rover fail: %v", err)        
+        }
 
-    err = rover.Move()
-    if err != nil {
-        t.Errorf("order rover fail: %v", err)        
+        err = rover.Move()
+        if err != nil {
+            t.Errorf("order rover fail: %v", err)        
+        }
+        
+        if rover.CurrPosition != p {
+            t.Error("rover's postion is not expect(-1,0)")        
+        }    
     }
     
-    if rover.CurrPosition != NewPosition(1, 0) {
-        t.Error("rover's postion is not expect(1,0)")        
-    }
-}
-
-func TestRoverMoveSouth(t *testing.T) {
-    var err error
-    
-    rover := &Rover{}
-    
-    err = rover.Init(0,0,SH)
-    if err != nil {
-        t.Errorf("init rover fail: %v", err)        
-    }
-
-    err = rover.Move()
-    if err != nil {
-        t.Errorf("order rover fail: %v", err)        
-    }
-    
-    if rover.CurrPosition != NewPosition(0,-1) {
-        t.Error("rover's postion is not expect(0,-1)")        
-    }
-}
-
-func TestRoverMoveWest(t *testing.T) {
-    var err error
-    
-    rover := &Rover{}
-    
-    err = rover.Init(0,0,WT)
-    if err != nil {
-        t.Errorf("init rover fail: %v", err)        
-    }
-
-    err = rover.Move()
-    if err != nil {
-        t.Errorf("order rover fail: %v", err)        
-    }
-    
-    if rover.CurrPosition != NewPosition(-1,0) {
-        t.Error("rover's postion is not expect(-1,0)")        
-    }
 }
 
 func GetLeftPosition(pos int) int {
