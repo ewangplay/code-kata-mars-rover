@@ -42,7 +42,7 @@ func TestRoverMoveForward(t *testing.T) {
     
     for d, p := range move_forward_positions {
         
-        err = rover.Init(0,0,d)
+        err = rover.Init(NewPosition(0,0),d)
         if err != nil {
             t.Errorf("init rover fail: %v", err)        
         }
@@ -66,7 +66,7 @@ func TestRoverMoveBackward(t *testing.T) {
     
     for d, p := range move_backward_positions {
         
-        err = rover.Init(0,0,d)
+        err = rover.Init(NewPosition(0,0),d)
         if err != nil {
             t.Errorf("init rover fail: %v", err)        
         }
@@ -104,7 +104,7 @@ func TestRoverTurnLeft(t *testing.T) {
     rover := &Rover{}
         
     for i, d := range turn_directions {
-        err = rover.Init(0,0,d)
+        err = rover.Init(NewPosition(0,0),d)
         if err != nil {
             t.Errorf("init rover fail: %v", err)        
         }
@@ -126,7 +126,7 @@ func TestRoverTurnRight(t *testing.T) {
     rover := &Rover{}
     
     for i, d := range turn_directions {
-        err = rover.Init(0,0,d)
+        err = rover.Init(NewPosition(0,0),d)
         if err != nil {
             t.Errorf("init rover fail: %v", err)        
         }
@@ -147,7 +147,7 @@ func TestRoverOrder(t *testing.T) {
     
     rover := &Rover{}
     
-    err = rover.Init(0,0,NH)
+    err = rover.Init(NewPosition(0,0),NH)
     if err != nil {
         t.Errorf("init rover fail: %v", err)        
     }

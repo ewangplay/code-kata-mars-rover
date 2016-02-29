@@ -28,8 +28,8 @@ type Rover struct {
     Direction int8
 }
 
-func (this *Rover) Init(x,y int64, d int8) error {
-    this.CurrPosition = NewPosition(x,y)
+func (this *Rover) Init(p Position, d int8) error {
+    this.CurrPosition = p
     this.Direction = d   
     
     return nil 
