@@ -24,27 +24,27 @@ func NewPosition(x, y int64) Position {
 }
 
 type Rover struct {
-	position Position
-	Direction    int8
+	position  Position
+	direction int8
 }
 
 func (this *Rover) Init(m *Map, p Position, d int8) error {
 	this.position = p
-	this.Direction = d
+	this.direction = d
 
 	return nil
 }
 
 func (this *Rover) GetPosition() Position {
-    return this.position
+	return this.position
 }
 
 func (this *Rover) GetDirection() int8 {
-    return this.Direction
+	return this.direction
 }
 
 func (this *Rover) MoveForward() error {
-	switch this.Direction {
+	switch this.direction {
 	case NH:
 		this.position.Y += 1
 	case ET:
@@ -61,7 +61,7 @@ func (this *Rover) MoveForward() error {
 }
 
 func (this *Rover) MoveBackward() error {
-	switch this.Direction {
+	switch this.direction {
 	case NH:
 		this.position.Y -= 1
 	case ET:
@@ -78,15 +78,15 @@ func (this *Rover) MoveBackward() error {
 }
 
 func (this *Rover) TurnLeft() error {
-	switch this.Direction {
+	switch this.direction {
 	case NH:
-		this.Direction = WT
+		this.direction = WT
 	case ET:
-		this.Direction = NH
+		this.direction = NH
 	case SH:
-		this.Direction = ET
+		this.direction = ET
 	case WT:
-		this.Direction = SH
+		this.direction = SH
 	default:
 		return fmt.Errorf("not setting direction")
 	}
@@ -95,15 +95,15 @@ func (this *Rover) TurnLeft() error {
 }
 
 func (this *Rover) TurnRight() error {
-	switch this.Direction {
+	switch this.direction {
 	case NH:
-		this.Direction = ET
+		this.direction = ET
 	case ET:
-		this.Direction = SH
+		this.direction = SH
 	case SH:
-		this.Direction = WT
+		this.direction = WT
 	case WT:
-		this.Direction = NH
+		this.direction = NH
 	default:
 		return fmt.Errorf("not setting direction")
 	}
