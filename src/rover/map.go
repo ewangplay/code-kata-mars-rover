@@ -12,17 +12,17 @@ func (this *Map)Init(l, w int64) error {
 }
 
 func (this *Map)GetEastEdge() int64 {
-    return 100
+    return this.length / 2
 }
 
 func (this *Map)GetWestEdge() int64 {
-    return -100
+    return -(this.length / 2)
 }
 
 func (this *Map)GetNorthEdge() int64 {
-    return 100
+    return this.width / 2
 }
 
 func (this *Map)GetSouthEdge() int64 {
-    return -100
+    return -(this.width / 2)
 }
