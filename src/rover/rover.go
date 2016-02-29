@@ -24,11 +24,13 @@ func NewPosition(x, y int64) Position {
 }
 
 type Rover struct {
+	mmap      *Map
 	position  Position
 	direction int8
 }
 
 func (this *Rover) Init(m *Map, p Position, d int8) error {
+	this.mmap = m
 	this.position = p
 	this.direction = d
 
@@ -46,13 +48,29 @@ func (this *Rover) GetDirection() int8 {
 func (this *Rover) MoveForward() error {
 	switch this.direction {
 	case NH:
-		this.position.Y += 1
+		if this.position.Y < this.mmap.GetNorthEdge() {
+			this.position.Y += 1
+		} else {
+			this.position.Y = this.mmap.GetSouthEdge()
+		}
 	case ET:
-		this.position.X += 1
+		if this.position.X < this.mmap.GetEastEdge() {
+			this.position.X += 1
+		} else {
+			this.position.X = this.mmap.GetWestEdge()
+		}
 	case SH:
-		this.position.Y -= 1
+		if this.position.Y > this.mmap.GetSouthEdge() {
+			this.position.Y -= 1
+		} else {
+			this.position.Y = this.mmap.GetNorthEdge()
+		}
 	case WT:
-		this.position.X -= 1
+		if this.position.X > this.mmap.GetWestEdge() {
+			this.position.X -= 1
+		} else {
+			this.position.X = this.mmap.GetEastEdge()
+		}
 	default:
 		return fmt.Errorf("not setting direction")
 	}
@@ -63,13 +81,29 @@ func (this *Rover) MoveForward() error {
 func (this *Rover) MoveBackward() error {
 	switch this.direction {
 	case NH:
-		this.position.Y -= 1
+		if this.position.Y > this.mmap.GetSouthEdge() {
+			this.position.Y -= 1
+		} else {
+			this.position.Y = this.mmap.GetNorthEdge()
+		}
 	case ET:
-		this.position.X -= 1
+		if this.position.X > this.mmap.GetWestEdge() {
+			this.position.X -= 1
+		} else {
+			this.position.X = this.mmap.GetEastEdge()
+		}
 	case SH:
-		this.position.Y += 1
+		if this.position.Y < this.mmap.GetNorthEdge() {
+			this.position.Y += 1
+		} else {
+			this.position.Y = this.mmap.GetSouthEdge()
+		}
 	case WT:
-		this.position.X += 1
+		if this.position.X < this.mmap.GetEastEdge() {
+			this.position.X += 1
+		} else {
+			this.position.X = this.mmap.GetWestEdge()
+		}
 	default:
 		return fmt.Errorf("not setting direction")
 	}
