@@ -52,7 +52,7 @@ func TestRoverMoveForward(t *testing.T) {
 			t.Errorf("order rover fail: %v", err)
 		}
 
-		if rover.GetCurrPosition() != p {
+		if rover.GetPosition() != p {
 			t.Errorf("rover's postion should be %v", p)
 		}
 	}
@@ -76,7 +76,7 @@ func TestRoverMoveBackward(t *testing.T) {
 			t.Errorf("order rover fail: %v", err)
 		}
 
-		if rover.GetCurrPosition() != p {
+		if rover.GetPosition() != p {
 			t.Error("rover's postion should be %v", p)
 		}
 	}
@@ -113,7 +113,7 @@ func TestRoverTurnLeft(t *testing.T) {
 			t.Errorf("rover turn left fail: %v", err)
 		}
 
-		if rover.Direction != turn_directions[GetLeftPosition(i)] {
+		if rover.GetDirection() != turn_directions[GetLeftPosition(i)] {
 			t.Errorf("rover facing to %v turn left will face to %v.", d, turn_directions[GetLeftPosition(i)])
 		}
 	}
@@ -135,7 +135,7 @@ func TestRoverTurnRight(t *testing.T) {
 			t.Errorf("rover turn right fail: %v", err)
 		}
 
-		if rover.Direction != turn_directions[GetRightPosition(i)] {
+		if rover.GetDirection() != turn_directions[GetRightPosition(i)] {
 			t.Errorf("rover facing to %v turn right will face to %v.", d, turn_directions[GetRightPosition(i)])
 		}
 	}
@@ -156,7 +156,7 @@ func TestRoverOrder(t *testing.T) {
 		t.Errorf("order rover fail: %v", err)
 	}
 
-	if rover.GetCurrPosition() != NewPosition(2, 2) {
+	if rover.GetPosition() != NewPosition(2, 2) {
 		t.Error("rover's postion is not expect(2,2)")
 	}
 }

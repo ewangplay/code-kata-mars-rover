@@ -35,8 +35,12 @@ func (this *Rover) Init(m *Map, p Position, d int8) error {
 	return nil
 }
 
-func (this *Rover) GetCurrPosition() Position {
+func (this *Rover) GetPosition() Position {
     return this.position
+}
+
+func (this *Rover) GetDirection() int8 {
+    return this.Direction
 }
 
 func (this *Rover) MoveForward() error {
