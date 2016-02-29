@@ -32,6 +32,8 @@ func TestMain(m *testing.M) {
 		return
 	}
 
+    mars_map.Print()
+
 	os.Exit(m.Run())
 }
 
