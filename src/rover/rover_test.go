@@ -26,7 +26,7 @@ func TestMain(m *testing.M) {
 	var err error
 
 	mars_map = &Map{}
-	err = mars_map.LoadData("mars_map_file.data")
+	err = mars_map.Init(200, 200)
 	if err != nil {
 		fmt.Printf("load mars map file fail: %v", err)
 		return

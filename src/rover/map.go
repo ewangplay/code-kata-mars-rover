@@ -1,10 +1,13 @@
 package rover
 
 type Map struct {
-
+    length int64
+    width int64
 }
 
-func (this *Map)LoadData(filename string) error {
+func (this *Map)Init(l, w int64) error {
+    this.length = l
+    this.width = w
     return nil
 }
 
