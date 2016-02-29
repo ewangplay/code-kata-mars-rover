@@ -2,6 +2,8 @@ package rover
 
 import (
     "testing"
+    "fmt"
+    "os"
 )
 
 var turn_directions = []int8{ET,SH,WT,NH}
@@ -16,6 +18,21 @@ var move_backward_positions = map[int8]Position {
     SH: NewPosition(0, 1),
     WT: NewPosition(1, 0),
     NH: NewPosition(0, -1),
+}
+
+var mars_map *Map
+
+func TestMain(m *testing.M) {
+    var err error
+    
+    mars_map = &Map{}
+    err = mars_map.LoadData("mars_map_file.data")
+    if err != nil {
+        fmt.Printf("load mars map file fail: %v", err)
+        return
+    }
+    
+    os.Exit(m.Run())
 }
 
 func TestRoverMoveForward(t *testing.T) {
